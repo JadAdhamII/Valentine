@@ -1,0 +1,50 @@
+# Valentine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day</title>
+</head>
+<body>
+
+<h1>Happy Valentine's Day!</h1>
+<p>Would you be my valentine?</p>
+
+<button onclick="yesClicked()">Yes</button>
+<button onclick="noClicked()">No</button>
+
+<script>
+  function sendData(answer) {
+    var xhr = new XMLHttpRequest();
+    var url = "/chosen-answer"; // This is the route we defined on the server
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log("Data sent successfully!");
+      }
+    };
+    var data = "answer=" + encodeURIComponent(answer); // Encode the answer
+    xhr.send(data);
+  }
+
+  function yesClicked() {
+    alert("Thank you!");
+    setTimeout(function() {
+      window.location.href = "https://youtube.com/shorts/GbwkOGmvn6g?si=DFidIO5eYL3nSoGu";
+    }, 600);
+    sendData("Yes");
+  }
+
+  function noClicked() {
+    alert("Why? 💔");
+    setTimeout(function() {
+      window.location.href = "https://youtu.be/PHm_B_idud8?si=vfjaUeCgoc4pxni3";
+    }, 600);
+    sendData("No");
+  }
+</script>
+
+</body>
+</html>
